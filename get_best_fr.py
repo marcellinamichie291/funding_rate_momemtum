@@ -16,7 +16,7 @@ symbols=get_liquid_symbols()
 
 def get_best_fr():
     fr_lst=[]
-    onehago=datetime.now()-timedelta(hours=4)
+    onehago=datetime.now()-timedelta(hours=8)
     onehago=onehago.timestamp()*1000
     for symbol in symbols:
         fr=ftx.fetch_funding_rate_history(symbol,since=onehago,limit=1)
