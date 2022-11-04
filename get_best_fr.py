@@ -14,9 +14,10 @@ ftx=ccxt.ftx({
 tf='1h'
 symbols=get_liquid_symbols()
 
-def get_best_fr():
+def get_best_fr(hours_val):
     fr_lst=[]
-    onehago=datetime.now()-timedelta(hours=8)
+    onehago=datetime.now()-timedelta(hours=hours_val)
+    onehago=onehago.replace(second=0, microsecond=0, minute=0, hour=onehago.hour)+timedelta(hours=onehago.minute//30)
     onehago=onehago.timestamp()*1000
     for symbol in symbols:
         fr=ftx.fetch_funding_rate_history(symbol,since=onehago,limit=1)
